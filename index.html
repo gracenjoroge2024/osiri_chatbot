@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osiri University Virtual Assistant</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
+        .chatbox { width: 400px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); }
+        .messages { height: 300px; overflow-y: auto; border-bottom: 1px solid #ddd; padding: 10px; }
+        .messages p { padding: 8px 10px; border-radius: 5px; margin: 5px 0; }
+        .user-message { background-color: #d4edda; text-align: right; }
+        .bot-message { background-color: #f8d7da; text-align: left; }
+        .input { display: flex; margin-top: 15px; }
+        input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px; background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 5px; }
+        .header { text-align: center; padding: 20px 0; }
+        .header h1 { margin: 0; }
+        .header p { margin: 5px 0; color: #6c757d; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Osiri University Virtual Assistant</h1>
+    <p>Your guide to Osiri University</p>
+</div>
+
+<div class="chatbox">
+    <div class="messages" id="messages">
+        <p class="bot-message">Hi there! I am your virtual assistant. How can I support you today?</p>
+    </div>
+    <div class="input">
+        <input type="text" id="userInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        var input = document.getElementById('userInput');
+        var message = input.value;
+        if (message.trim() !== '') {
+            // Display user message
+            var userMessage = document.createElement('p');
+            userMessage.className = 'user-message';
+            userMessage.textContent = message;
+            document.getElementById('messages').appendChild(userMessage);
+
+            // Clear input
+            input.value = '';
+
+            // Simulate bot response
+            setTimeout(function() {
+                var botMessage = document.createElement('p');
+                botMessage.className = 'bot-message';
+                
+                // Handle sample questions
+                if (message.toLowerCase().includes('why choose osiri university')) {
+                    botMessage.textContent = 'Osiri University is recognized for offering a dynamic and flexible learning environment, especially suited for students who value a virtual education experience.';
+                } else if (message.toLowerCase().includes('programs')) {
+                    botMessage.textContent = 'Osiri University offers undergraduate, graduate (MBA, MS Data Science), and PhD programs.';
+                } else if (message.toLowerCase().includes('contact')) {
+                    botMessage.textContent = 'You can contact Osiri University at contact@osiri.edu or call +123456789.';
+                } else {
+                    botMessage.textContent = 'I am not quite sure I understand that. Kindly clarify your question?';
+                }
+
+                document.getElementById('messages').appendChild(botMessage);
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+            }, 1000);
+        }
+    }
+</script>
+
+</body>
+</html>
